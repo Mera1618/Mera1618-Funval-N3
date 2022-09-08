@@ -39,7 +39,7 @@ const nuevaCompra = (nuevoselemento) =>{
         </div>
         <div class="d-flex w-25">
             <button class="button-more" id="agregar-producto" href="#"><img src="https://img.icons8.com/ios-glyphs/30/000000/filled-plus-2-math.png"/></button>
-            <p class="contadores">1</p>
+            <p class="contadores">${nuevoselemento.cantidad}</p>
             <button class="button-minor" id="agregar-producto" href="#"><img src="https://img.icons8.com/ios-glyphs/30/000000/filled-minus-2-math.png"/></button>
             <button class="fw-bold d-flex justify-content-between h-25 boton-basura"><img src="https://img.icons8.com/sf-black-filled/64/000000/trash.png"/></button>
         </div>
@@ -47,7 +47,6 @@ const nuevaCompra = (nuevoselemento) =>{
     </div>
     `
 }
-
 
 const pagarproducto = (pagodeproductos) =>{
     return `
@@ -76,6 +75,9 @@ const eventos = (arr) => {
             carrito.forEach(nuevoselemento => {
                 newElement.innerHTML += nuevaCompra(nuevoselemento);
             })
+            funcioncarrito();
+            carritofinal();
+            function funcioncarrito() {
             let masproducto = document.querySelectorAll(".button-more");
             let menosproduco = document.querySelectorAll(".button-minor");
             let guardacontador = document.querySelectorAll(".contadores");
@@ -91,8 +93,6 @@ const eventos = (arr) => {
                 let totales = carrito[index].cantidad * carrito[index].precio;
                 carrito[index].totalpagar = totales;
                 vamospagar[index].textContent = totales;
-                console.log(carrito);
-                //datos de la tercer sección
                 carrito.forEach(pagodeproductos =>{
                 pagarproducto(pagodeproductos);
                 pagarprint.innerHTML += pagarproducto(pagodeproductos);
@@ -147,8 +147,11 @@ const eventos = (arr) => {
                     }
                  })
             })
-            let borrarcard = document.querySelectorAll(".boton-basura");
+            borrcard();  
+            }
 
+            function borrcard() {
+                let borrarcard = document.querySelectorAll(".boton-basura");
             borrarcard.forEach((button, index) =>{
                 button.addEventListener("click", () =>{
                     console.log("aqui");
@@ -160,10 +163,13 @@ const eventos = (arr) => {
                     carrito.forEach(nuevoselemento => {
                     newElement.innerHTML += nuevaCompra(nuevoselemento);
             })
+            funcioncarrito();
+            pagarprint.textContent="";
+            carritofinal();
                 })
             })
-
-            //datos de la tercer sección
+        }
+            function carritofinal() {
             carrito.forEach(pagodeproductos =>{
                 pagarproducto(pagodeproductos);
                 pagarprint.innerHTML += pagarproducto(pagodeproductos);
@@ -177,6 +183,7 @@ const eventos = (arr) => {
                     ${subtotal}
                 </li>
                 `;
+            }
         })
     })
 }
