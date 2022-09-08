@@ -20,9 +20,9 @@ const createElement =(elemento) =>{
         <div class="p-1" style ="background: ${elemento.background}">
             <img src="${elemento.imagen}">
         </div>
-        <h2 class="fw-bold d-flex justify-content-between py-2">${elemento.nombre}<button id="gustoss-producto"><img src="https://img.icons8.com/cotton/64/000000/like--v5.png"/></button></h2>
+        <h2 class="fw-bold d-flex justify-content-between py-2">${elemento.nombre}<button id="gustos-producto"><img src="https://img.icons8.com/cotton/64/000000/like--v5.png"/></button></h2>
         <div>${elemento.descripcion}</div>
-        <div class ="fw-bold d-flex justify-content-between py-2">$${elemento.precio}<button class="button" id="agregar-producto" href="#"><img src="https://img.icons8.com/ios-glyphs/30/000000/filled-plus-2-math.png"/></button></div>
+        <div class ="fw-bold d-flex justify-content-between py-2">$${elemento.precio}<button class="cardbutton" id="agregar-producto" href="#"><img src="https://img.icons8.com/ios-glyphs/30/000000/filled-plus-2-math.png"/></button></div>
     </div>
     `
 }
@@ -37,9 +37,13 @@ const nuevaCompra = (nuevoselemento) =>{
             <h2 class="fw-bold d-flex justify-content-between py-2">${nuevoselemento.nombre}</h2>
             <div>${nuevoselemento.descripcion}</div>
         </div>
-        <button class="button" id="agregar-producto" href="#"><img src="https://img.icons8.com/ios-glyphs/30/000000/filled-plus-2-math.png"/></button>
-        <button class="button" id="agregar-producto" href="#"><img src="https://img.icons8.com/ios-glyphs/30/000000/filled-minus-2-math.png"/></button>
-        <h1 class ="fw-bold d-flex justify-content-between py-2">$${nuevoselemento.precio}</h1>
+        <div class="d-flex w-25">
+            <button class="button-more" id="agregar-producto" href="#"><img src="https://img.icons8.com/ios-glyphs/30/000000/filled-plus-2-math.png"/></button>
+            <p class="contadores">1</p>
+            <button class="button-minor" id="agregar-producto" href="#"><img src="https://img.icons8.com/ios-glyphs/30/000000/filled-minus-2-math.png"/></button>
+            <button class="fw-bold d-flex justify-content-between h-25 boton-basura"><img src="https://img.icons8.com/sf-black-filled/64/000000/trash.png"/></button>
+        </div>
+        <h1 class ="fw-bold d-flex justify-content-between py-2 precio-pagar">$${nuevoselemento.precio}</h1>
     </div>
     `
 }
@@ -48,54 +52,137 @@ const nuevaCompra = (nuevoselemento) =>{
 const pagarproducto = (pagodeproductos) =>{
     return `
     <div>
-        <p class="text-center">Have a coupon code? enter here</p>
-        <input class="w-100" placeholder="Your coupon">
         <ul>
             <li>${pagodeproductos.nombre}</li>
         </ul>
         <ul>
             <li>${pagodeproductos.totalpagar}</li>
         </ul>
-        
-        <button class="btn btn-success">Continue to payment</button>
     </div>
     `
 }
 
 const eventos = (arr) => {
-    let buttons = document.querySelectorAll(".button");
+    let buttons = document.querySelectorAll(".cardbutton");
     buttons.forEach((button, index) =>{
         button.addEventListener("click", () =>{
             let pagarprint = document.getElementById("pay");
             pagarprint.innerHTML = "";
-            arr[index].cantidad = 1;
             arr[index].totalpagar = arr[index].precio;
-            console.log(arr[index]);
             carrito.push(arr[index]);
-            console.log(carrito);
+            arr[index].cantidad = 1;
             let newElement = document.getElementById("story");
             newElement.innerHTML = "";
             carrito.forEach(nuevoselemento => {
                 newElement.innerHTML += nuevaCompra(nuevoselemento);
             })
+            let masproducto = document.querySelectorAll(".button-more");
+            let menosproduco = document.querySelectorAll(".button-minor");
+            let guardacontador = document.querySelectorAll(".contadores");
+            let vamospagar = document.querySelectorAll(".precio-pagar");
+
+            masproducto.forEach((button, index) =>{
+            button.addEventListener("click", () => {
+                pagarprint.innerHTML = "";
+                let compras = carrito[index].cantidad;
+                compras ++;
+                carrito[index].cantidad= compras;
+                guardacontador[index].textContent = carrito[index].cantidad;
+                let totales = carrito[index].cantidad * carrito[index].precio;
+                carrito[index].totalpagar = totales;
+                vamospagar[index].textContent = totales;
+                console.log(carrito);
+                //datos de la tercer sección
+                carrito.forEach(pagodeproductos =>{
+                pagarproducto(pagodeproductos);
+                pagarprint.innerHTML += pagarproducto(pagodeproductos);
+                })
+                let subtotal = 0;
+                carrito.forEach(subtotalpr=>{
+                    subtotal+=subtotalpr.totalpagar;
+                })
+                pagarprint.innerHTML+=`
+                <li>
+                    ${subtotal}
+                </li>
+                `;
+                if (compras == carrito[index].stock) {
+                    button.disabled = true;
+                    carrito[index].cantidad= compras;
+                    guardacontador[index].textContent = carrito[index].cantidad;
+                }else if( compras > 1){
+                    menosproduco[index].disabled = false;
+                }
+             })
+            })
+            menosproduco.forEach((button, index) =>{
+                button.addEventListener("click", () => {
+                    pagarprint.innerHTML = "";
+                    let compras = carrito[index].cantidad;
+                    compras --;
+                    carrito[index].cantidad= compras;
+                    guardacontador[index].textContent = carrito[index].cantidad;
+                    let totales = carrito[index].cantidad * carrito[index].precio;
+                    carrito[index].totalpagar = totales;
+                    vamospagar[index].textContent = totales;
+                    //datos de la tercer sección
+                    carrito.forEach(pagodeproductos =>{
+                    pagarproducto(pagodeproductos);
+                    pagarprint.innerHTML += pagarproducto(pagodeproductos);
+                    })
+                    let subtotal = 0;
+                    carrito.forEach(subtotalpr=>{
+                        subtotal+=subtotalpr.totalpagar;
+                    })
+                    pagarprint.innerHTML+=`
+                    <li>
+                        ${subtotal}
+                    </li>
+                    `;
+                    if (compras == 1) {
+                        button.disabled = true;
+                    }
+                    else if( compras <= carrito[index].stock){
+                        masproducto[index].disabled = false;
+                    }
+                 })
+            })
+            let borrarcard = document.querySelectorAll(".boton-basura");
+
+            borrarcard.forEach((button, index) =>{
+                button.addEventListener("click", () =>{
+                    console.log("aqui");
+                    carrito.splice(carrito[index],1);
+                    console.log(carrito);
+                    // newsElement.textContent ="";
+                    let newElement = document.getElementById("story");
+                    newElement.innerHTML = "";
+                    carrito.forEach(nuevoselemento => {
+                    newElement.innerHTML += nuevaCompra(nuevoselemento);
+            })
+                })
+            })
+
             //datos de la tercer sección
             carrito.forEach(pagodeproductos =>{
                 pagarproducto(pagodeproductos);
                 pagarprint.innerHTML += pagarproducto(pagodeproductos);
-            })
-            let subtotal = 0;
-            carrito.forEach(subtotalpr=>{
-                subtotal+=subtotalpr.totalpagar;
-            })
-            pagarprint.innerHTML+=`
-            <li>
-                ${subtotal}
-            </li>
-            `
+                })
+                let subtotal = 0;
+                carrito.forEach(subtotalpr=>{
+                    subtotal+=subtotalpr.totalpagar;
+                })
+                pagarprint.innerHTML+=`
+                <li>
+                    ${subtotal}
+                </li>
+                `;
         })
     })
 }
-
+//Perdón por lo inconvenientes la verdad ha sid uno de los mosulo más dificiles para mi
+//y todo el entorno por el que pase estas semanas noa yudo, una disculpa
+//seguire trabjando y de mejor forma para que no ocurra de nuevo
 // let main = document.getElementById("root");
 
 // const card = (nombre, descripcion, precio, img, background)=>`

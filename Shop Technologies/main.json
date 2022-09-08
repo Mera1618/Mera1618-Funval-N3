@@ -3,7 +3,7 @@
         "nombre": "VR Glasses CR-103",
         "descripcion": "The new vr glasses are amazing if you want...",
         "precio": 128,
-        "stock":100,
+        "stock":10,
         "imagen":"./images/VR.png",
         "background":"#39C7A5"
     },
@@ -11,7 +11,7 @@
         "nombre": "VR Glasses CR-103",
         "descripcion": "The new vr glasses are amazing if you want...",
         "precio": 128,
-        "stock":100,
+        "stock":10,
         "imagen":"./images/MN643.png",
         "background":"#FDE1E6"
     },
@@ -19,7 +19,7 @@
         "nombre": "VR Glasses CR-103",
         "descripcion": "The new vr glasses are amazing if you want...",
         "precio": 128,
-        "stock":100,
+        "stock":10,
         "imagen":"./images/PS4.png",
         "background":"#D5D5E0"
     },
@@ -27,7 +27,7 @@
         "nombre": "VR Glasses CR-103",
         "descripcion": "The new vr glasses are amazing if you want...",
         "precio": 128,
-        "stock":100,
+        "stock":10,
         "imagen":"./images/VR.png",
         "background":"#39C7A5"
     },
@@ -35,7 +35,7 @@
         "nombre": "VR Glasses CR-103",
         "descripcion": "The new vr glasses are amazing if you want...",
         "precio": 128,
-        "stock":100,
+        "stock":10,
         "imagen":"./images/MN643.png",
         "background":"#FDE1E6"
     },
@@ -43,7 +43,7 @@
         "nombre": "VR Glasses CR-103",
         "descripcion": "The new vr glasses are amazing if you want...",
         "precio": 128,
-        "stock":100,
+        "stock":10,
         "imagen":"./images/PS4.png",
         "background":"#D5D5E0"
     },
@@ -51,7 +51,7 @@
         "nombre": "VR Glasses CR-103",
         "descripcion": "The new vr glasses are amazing if you want...",
         "precio": 128,
-        "stock":100,
+        "stock":10,
         "imagen":"./images/VR.png",
         "background":"#39C7A5"
     },
@@ -59,7 +59,7 @@
         "nombre": "VR Glasses CR-103",
         "descripcion": "The new vr glasses are amazing if you want...",
         "precio": 128,
-        "stock":100,
+        "stock":10,
         "imagen":"./images/MN643.png",
         "background":"#FDE1E6"
     },
@@ -67,7 +67,7 @@
         "nombre": "VR Glasses CR-103",
         "descripcion": "The new vr glasses are amazing if you want...",
         "precio": 128,
-        "stock":100,
+        "stock":10,
         "imagen":"./images/PS4.png",
         "background":"#D5D5E0"
     }

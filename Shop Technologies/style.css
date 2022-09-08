@@ -86,6 +86,13 @@ html, body{
     max-width: 100%;
   }
 
+  .contenedor-pago{
+    width: 300px;
+    margin: auto;
+    border: solid;
+    border-color: gray;
+  }
+
   .footer-fi{
     display: flex;
   }
@@ -99,7 +106,7 @@ html, body{
     background: none;
   }
 
-  #gustoss-producto{
+  #gustos-producto{
     border: none;
     background: none;
   }
