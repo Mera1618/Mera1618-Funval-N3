@@ -44,11 +44,19 @@ const nuevaCompra = (nuevoselemento) =>{
     `
 }
 
+
 const pagarproducto = (pagodeproductos) =>{
     return `
     <div>
         <p class="text-center">Have a coupon code? enter here</p>
         <input class="w-100" placeholder="Your coupon">
+        <ul>
+            <li>${pagodeproductos.nombre}</li>
+        </ul>
+        <ul>
+            <li>${pagodeproductos.totalpagar}</li>
+        </ul>
+        
         <button class="btn btn-success">Continue to payment</button>
     </div>
     `
@@ -58,20 +66,35 @@ const eventos = (arr) => {
     let buttons = document.querySelectorAll(".button");
     buttons.forEach((button, index) =>{
         button.addEventListener("click", () =>{
+            let pagarprint = document.getElementById("pay");
+            pagarprint.innerHTML = "";
+            arr[index].cantidad = 1;
+            arr[index].totalpagar = arr[index].precio;
+            console.log(arr[index]);
             carrito.push(arr[index]);
+            console.log(carrito);
             let newElement = document.getElementById("story");
             newElement.innerHTML = "";
             carrito.forEach(nuevoselemento => {
                 newElement.innerHTML += nuevaCompra(nuevoselemento);
             })
+            //datos de la tercer sección
+            carrito.forEach(pagodeproductos =>{
+                pagarproducto(pagodeproductos);
+                pagarprint.innerHTML += pagarproducto(pagodeproductos);
+            })
+            let subtotal = 0;
+            carrito.forEach(subtotalpr=>{
+                subtotal+=subtotalpr.totalpagar;
+            })
+            pagarprint.innerHTML+=`
+            <li>
+                ${subtotal}
+            </li>
+            `
         })
     })
 }
-
-const paypa = (arra) =>{
-    let suma = document.quer
-}
-
 
 // let main = document.getElementById("root");
 
