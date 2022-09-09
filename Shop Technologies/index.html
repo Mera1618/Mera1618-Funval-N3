@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/4b764d2cc9.js" crossorigin="anonymous"></script>
     <title>Shop Technologies</title>
 </head>
 <body>
@@ -13,16 +14,16 @@
         <section class="icon justify-content-end w-100" id="hamburgerIcon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M0 96C0 78.33 14.33 64 32 64H416C433.7 64 448 78.33 448 96C448 113.7 433.7 128 416 128H32C14.33 128 0 113.7 0 96zM0 256C0 238.3 14.33 224 32 224H416C433.7 224 448 238.3 448 256C448 273.7 433.7 288 416 288H32C14.33 288 0 273.7 0 256zM416 448H32C14.33 448 0 433.7 0 416C0 398.3 14.33 384 32 384H416C433.7 384 448 398.3 448 416C448 433.7 433.7 448 416 448z"/></svg>
         </section>
-        <h1 class=" titulo text-wrap fw-bold">
+        <h1 id="shop" class=" titulo text-wrap fw-bold">
             Shop Technology
         </h1>
         <div class="header-color">
         <nav class="navegador" id="navegadorId">
             <div class="contenedor-navegador">
                 <ul class="listado">
-                    <li class="listado-interno"><a class="listado-contenido" href="#">Home</a></li>
-                    <li class="listado-interno"><a class="listado-contenido" href="#">Payment</a></li>
-                    <a href="#"><img src="https://img.icons8.com/ios-glyphs/60/000000/buy--v2.png"/></a>
+                    <li class="listado-interno"><a class="listado-contenido" href="#shop">Home</a></li>
+                    <li class="listado-interno"><a id="pagador" class="listado-contenido" href="#buy">Payment</a></li>
+                    <a href="#tus-pedidos"><img src="https://img.icons8.com/ios-glyphs/60/000000/buy--v2.png"/></a>
                 </ul>
             </div>
         </nav>
@@ -31,19 +32,21 @@
     </header>
     <main id="root" class="row">
     </main>
-    <h1 class="text-center">TUS PEDIDOS</h1>
+    <h1 id="tus-pedidos" class="text-center">TUS PEDIDOS</h1>
     <section id="story">
     </section>
     <div class="contenedor-pago justify-content-center">
-        <h1 class="text-center">Total to pay</h1>
-            <div>
+        <h1 id="buy" class="text-center">Total to pay</h1>
+            <div class="text-center">
                 <p class="text-center">Have a coupon code? enter here</p>
-                <input class="w-100" placeholder="Your coupon">
-            </div>
+                <input id="descount" class="w-75 text-muted text-center" placeholder="Your coupon">
+            </div> 
             <section id="pay">
             </section>
-            <button class="btn btn-success">Continue to payment</button>
-        </div>
+            <div class="text-center p-2">
+                <button class="btn btn-success">Continue to payment</button>
+            </div>
+    </div>
     <footer class="footer-fi  flex-row p-5">
         <div class="w-50 justify-content-center">
             <h1>Shop Technology</h1>
