@@ -103,10 +103,26 @@ const eventos = (arr) => {
                 carrito.forEach(subtotalpr=>{
                     subtotal+=subtotalpr.totalpagar;
                 })
+                let subtotal2 = subtotal+5;
+                console.log(subtotal2);
                 pagarprint.innerHTML+=`
-                <li class="precio-final">
-                   $ ${subtotal}
-                </li>
+                <table class = "w-100">
+                    <tr>
+                        <td class= "descuento">
+                            Discount -10%
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class= "descuento">
+                            Delivery Free: $5                      
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="precio-final text-success">
+                           $ ${subtotal2}
+                        </td>
+                    </tr>
+                </table>
                 `;
                 if (compras == carrito[index].stock) {
                     button.disabled = true;
@@ -136,10 +152,26 @@ const eventos = (arr) => {
                     carrito.forEach(subtotalpr=>{
                         subtotal+=subtotalpr.totalpagar;
                     })
+                    let subtotal2 = subtotal+5;
+                    console.log(subtotal2);
                     pagarprint.innerHTML+=`
-                    <li class="precio-final">
-                       $ ${subtotal}
-                    </li>
+                    <table class = "w-100">
+                    <tr>
+                        <td class= "descuento">
+                            Discount -10%
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class= "descuento">
+                            Delivery Free: $5                      
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="precio-final text-success">
+                           $ ${subtotal2}
+                        </td>
+                    </tr>
+                </table>
                     `;
                     if (compras == 1) {
                         button.disabled = true;
@@ -180,6 +212,9 @@ const eventos = (arr) => {
                 carrito.forEach(subtotalpr=>{
                     subtotal+=subtotalpr.totalpagar;
                 })
+                console.log(subtotal);
+                let subtotal2 = subtotal+5;
+                console.log(subtotal2);
                 pagarprint.innerHTML+=`
                 <table class = "w-100">
                     <tr>
@@ -194,7 +229,7 @@ const eventos = (arr) => {
                     </tr>
                     <tr>
                         <td class="precio-final text-success">
-                           $ ${subtotal}
+                           $ ${subtotal2}
                         </td>
                     </tr>
                 </table>
@@ -204,12 +239,13 @@ const eventos = (arr) => {
                 let descuento = document.getElementById("descount");
                 descuento.addEventListener( "input", () =>{
                     if (descuento.value == "descount") {
-                        let condescuento = (subtotal - (subtotal*.10) + 5);
+                        let condescuento = (subtotal2 - (subtotal2*.10));
                         let finalpagar = document.querySelector(".precio-final");
                         finalpagar.textContent = condescuento;
                     }else{
                         let finalpagar = document.querySelector(".precio-final");
-                        finalpagar.textContent = subtotal + 5;
+                        finalpagar.textContent = subtotal2;
+                        console.log(subtotal2);
                     }
                 })
             }
