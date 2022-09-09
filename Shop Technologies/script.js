@@ -20,7 +20,7 @@ const createElement =(elemento) =>{
         <div class="p-1" style ="background: ${elemento.background}">
             <img src="${elemento.imagen}">
         </div>
-        <h2 class="fw-bold d-flex justify-content-between py-2">${elemento.nombre}<button id="gustos-producto"><i class="fa-solid fa-heart"></i></button></h2>
+        <h2 class="fw-bold d-flex justify-content-between py-2">${elemento.nombre}<button class="corazon rounded-circle" id="gustos-producto"><i class="corazon-i fa-solid fa-heart"></i></button></h2>
         <div>${elemento.descripcion}</div>
         <div class ="fw-bold d-flex justify-content-between py-2">$${elemento.precio}<button class="cardbutton" id="agregar-producto" href="#"><img src="https://img.icons8.com/ios-glyphs/30/000000/filled-plus-2-math.png"/></button></div>
     </div>
@@ -37,13 +37,13 @@ const nuevaCompra = (nuevoselemento) =>{
             <h2 class="fw-bold d-flex justify-content-between py-2">${nuevoselemento.nombre}</h2>
             <div>${nuevoselemento.descripcion}</div>
         </div>
-        <div class="d-flex w-25 contenedor-botones">
+        <div class="d-flex w-25 contenedor-botones align-items-center">
             <button class="button-more w-80" id="agregar-producto" href="#"><img src="https://img.icons8.com/ios-glyphs/30/000000/filled-plus-2-math.png"/></button>
-            <p class="contadores"0>${nuevoselemento.cantidad}</p>
+            <p class="contadores">${nuevoselemento.cantidad}</p>
             <button class="button-minor" id="eliminar-producto" href="#"><img src="https://img.icons8.com/ios-glyphs/30/000000/filled-minus-2-math.png"/></button>
         </div>
         <div class="d-flex flex-column">
-            <h1 class ="fw-bold d-flex justify-content-between py-2 precio-pagar">$${nuevoselemento.precio}</h1>
+            <h1 class ="fw-bold d-flex justify-content-between py-2 precio-pagar">$ ${nuevoselemento.precio}</h1>
             <button class="fw-bold d-flex justify-content-between h-25 boton-basura"><i class="fa-solid fa-trash"></i></button>
         </div>
     </div>
@@ -56,7 +56,7 @@ const pagarproducto = (pagodeproductos) =>{
         <table class="table">
             <tr>
                 <td>${pagodeproductos.nombre}</td>
-                <td>${pagodeproductos.totalpagar}</td>
+                <td>$ ${pagodeproductos.totalpagar}</td>
             </tr>
         </table>
     </div>
@@ -105,7 +105,7 @@ const eventos = (arr) => {
                 })
                 pagarprint.innerHTML+=`
                 <li class="precio-final">
-                    ${subtotal}
+                   $ ${subtotal}
                 </li>
                 `;
                 if (compras == carrito[index].stock) {
@@ -138,7 +138,7 @@ const eventos = (arr) => {
                     })
                     pagarprint.innerHTML+=`
                     <li class="precio-final">
-                        ${subtotal}
+                       $ ${subtotal}
                     </li>
                     `;
                     if (compras == 1) {
@@ -181,21 +181,35 @@ const eventos = (arr) => {
                     subtotal+=subtotalpr.totalpagar;
                 })
                 pagarprint.innerHTML+=`
-                <li class="precio-final">
-                    ${subtotal}
-                </li>
+                <table class = "w-100">
+                    <tr>
+                        <td class= "descuento">
+                            Discount -10%
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class= "descuento">
+                            Delivery Free: $5                      
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="precio-final text-success">
+                           $ ${subtotal}
+                        </td>
+                    </tr>
+                </table>
                 `;
                 descuentazo();
                 function descuentazo() {
                 let descuento = document.getElementById("descount");
                 descuento.addEventListener( "input", () =>{
                     if (descuento.value == "descount") {
-                        let condescuento = (subtotal - (subtotal*.10));
+                        let condescuento = (subtotal - (subtotal*.10) + 5);
                         let finalpagar = document.querySelector(".precio-final");
                         finalpagar.textContent = condescuento;
                     }else{
                         let finalpagar = document.querySelector(".precio-final");
-                        finalpagar.textContent = subtotal;
+                        finalpagar.textContent = subtotal + 5;
                     }
                 })
             }
