@@ -21,7 +21,7 @@
         "precio": 128,
         "stock":10,
         "imagen":"./images/PS4.png",
-        "background":"#D5D5E0"
+        "background":"#F66D6E"
     },
     {
         "nombre": "VR Glasses CR-103",
@@ -29,7 +29,7 @@
         "precio": 128,
         "stock":10,
         "imagen":"./images/VR.png",
-        "background":"#39C7A5"
+        "background":"#E3F2FB"
     },
     {
         "nombre": "VR Glasses CR-103",
@@ -61,7 +61,7 @@
         "precio": 128,
         "stock":10,
         "imagen":"./images/MN643.png",
-        "background":"#FDE1E6"
+        "background":"#E3F2FB"
     },
     {
         "nombre": "VR Glasses CR-103",
